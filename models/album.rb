@@ -21,27 +21,27 @@ class Album
   end
 
   def self.all
-    sql = "SELECT * FROM artists"
+    sql = "SELECT * FROM albums"
     values = []
-    results = SqlRunner.run(sql, values)
-    return results.map{|artist| Artist.new(artist)}
+    results = SqlRunner.run(values, results)
+    return results.map{|album| Album.new(album)}
   end
 
   def self.find
     sql = "SELECT * WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
-    return Artist.new(results[0])
+    return Album.new(results[0])
   end
 
   def self.delete_all
-    sql = "DELETE FROM artists"
+    sql = "DELETE FROM albums"
     values = []
     SqlRunner.run(sql, values)
   end
 
   def destory(id)
-    sql = "DELETE FROM artists WHERE id = $1"
+    sql = "DELETE FROM albums WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
   end
