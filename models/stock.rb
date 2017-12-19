@@ -1,3 +1,5 @@
+require_relative("../db/sql_runner.rb")
+
 class Stock
 
   attr_reader
@@ -17,7 +19,7 @@ class Stock
   end
 
   def save
-    sql = "INSERT INTO record_shop
+    sql = "INSERT INTO stocks
           (
           album_id,
           album_quantity,

@@ -1,3 +1,5 @@
+require_relative("../db/sql_runner.rb")
+
 class Artist
   attr_reader :id, :name, :profile
 
@@ -9,7 +11,7 @@ class Artist
   end
 
   def save
-    sql = "INSERT INTO record_shop (name, profile, image)
+    sql = "INSERT INTO artists (name, profile, image)
           VALUES ($1,$2,$3)
           RETURNING id"
     values = [@name, @profile, @image]

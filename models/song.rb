@@ -1,3 +1,5 @@
+require_relative("../db/sql_runner.rb")
+
 class Song
 
   attr_reader :id, :title, :artist_id, :album_id, :length, :genre
@@ -10,13 +12,13 @@ class Song
   end
 
   def save
-    sql = "INSERT INTO record_shop
+    sql = "INSERT INTO songs
           (
           title,
           length,
           genre
           )
-          VALUES ($1,$2,$3,$4,$5)
+          VALUES ($1,$2,$3)
           RETURNING id"
     values = [
           @title,
