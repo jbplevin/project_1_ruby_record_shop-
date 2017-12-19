@@ -21,7 +21,7 @@ artist1.save()
 song1 = Song.new({
   "title" => "The Modern Age",
   "genre" => "Indie Rock",
-  "length" => 03.32
+  "length" => 3.32
   })
 song1.save()
 

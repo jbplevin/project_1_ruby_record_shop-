@@ -1,0 +1,32 @@
+<div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Quantity</th>
+      <th>Trade Price</th>
+      <th>Retail Price</th>
+      <th>Margin</th>
+      <th>Stock Level</th>
+      <th>Remove</th>
+    </tr>
+    <tr>
+      <% @stocks.each do |stock| %>
+      <td> <%= stock.id %> </td>
+      <td> <%=stock.type%> </td>
+      <td> <%=album.title%> </td>
+      <td> <%=artist.name%> </td>
+      <td> <%=album.genre%> </td>
+      <td> <%=stock.quantity%> </td>
+      <td> <%=stock.album_trade_price%> </td>
+      <td> <%=stock.album_retail_price%> </td>
+      <td> <%=stock.album_margin%> </td>
+      <td></td>
+      <!-- <td><%= stock.delete(id) %></td> -->
+    </tr>
+      <% end  %>
+  </table>
+
+</div>

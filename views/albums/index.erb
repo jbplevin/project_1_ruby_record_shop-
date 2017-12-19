@@ -1,0 +1,21 @@
+<div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Image</th>
+      <th>Type</th>
+      <th>Album Title</th>
+      <th>Genre</th>
+    </tr>
+    <tr>
+      <% @albums.each do |album| %>
+      <td> <%= album.id %> </td>
+      <td> <%=album.image%> </td>
+      <td> <%=album.type%> </td>
+      <td> <%=album.title%> </td>
+      <td> <%=album.genre%> </td>
+    </tr>
+      <% end  %>
+  </table>
+
+</div>

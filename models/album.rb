@@ -19,7 +19,15 @@ class Album
     sql = "INSERT INTO albums (artist_id, song_id, type, genre, title, image, tracklist)
           VALUES ($1,$2,$3,$4,$5,$6,$7)
           RETURNING id"
-    values = @artist_id, @song_id, @type, @genre, @title, @image, @tracklist
+    values = [
+              @artist_id,
+              @song_id,
+              @type,
+              @genre,
+              @title,
+              @image,
+              @tracklist
+            ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
   end
@@ -27,7 +35,7 @@ class Album
   def self.all
     sql = "SELECT * FROM albums"
     values = []
-    results = SqlRunner.run(values, results)
+    results = SqlRunner.run(sql, values)
     return results.map{|album| Album.new(album)}
   end
 

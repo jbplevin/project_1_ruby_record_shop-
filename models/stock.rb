@@ -55,7 +55,7 @@ class Stock
     return results.map{|stock| Stock.new(stock)}
   end
 
-  def find
+  def self.find(id)
     sql = "SELECT * WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
@@ -68,10 +68,29 @@ class Stock
     SqlRunner.run(sql, values)
   end
 
+  def self.album_margins
+
+
+  end
+
+  def self.single_margin(id)
+    sql = "SELECT song_retail_price, song_trade_price,
+          song_retail_price - song_trade_price
+          FROM stocks WHERE id = $1"
+    values = [id]
+    SqlRunner.run(sql, values)
+  end
+
   def destory(id)
     sql = "DELETE FROM stocks WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
   end
+
+  def stock_level(id)
+
+  end
+
+
 
 end
