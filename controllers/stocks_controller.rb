@@ -6,7 +6,7 @@ require_relative("../models/album.rb")
 require_relative("../models/stock.rb")
 
 get'/stocks' do
-  @songs = Stock.all
+  @stocks = Stock.all
   erb(:"stocks/index")
 end
 

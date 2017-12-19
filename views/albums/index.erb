@@ -10,10 +10,10 @@
     <tr>
       <% @albums.each do |album| %>
       <td> <%= album.id %> </td>
-      <td> <%=album.image%> </td>
-      <td> <%=album.type%> </td>
-      <td> <%=album.title%> </td>
-      <td> <%=album.genre%> </td>
+      <td> <%=album.album_cover%> </td>
+      <td> <%=album.album_type%> </td>
+      <td> <%=album.album_title%> </td>
+      <td> <%=album.album_genre%> </td>
     </tr>
       <% end  %>
   </table>

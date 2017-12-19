@@ -2,9 +2,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Kool Keith's Record Store</title>
+    <link rel="stylesheet" href="/styles/structure.css">
+    <link rel="stylesheet" href="/styles/forms.css">
+    <link rel="stylesheet" href="/styles/buttons.css">
+    <link rel="stylesheet" href="/styles/tables.css">
   </head>
   <body>
-    <%= yield %> 
+    <main>
+      <nav>
+        <ul>
+          <ul><a href="/stocks">Home</a>
+            <li><a href="/stocks/new">Add New Stock Item</a></li>
+          </ul>
+          <ul><a href="/artists">Artists</a>
+            <li><a href="/artists/new">Add New Artist</a></li>
+          </ul>
+          <ul><a href="/albums">Albums</a>
+            <li><a href="/albums/new">Add New Album</a></li>
+          </ul>
+          <ul><a href="/songs">Songs</a>
+            <li><a href="/songs/new">Add New Song</a></li>
+          </ul>
+
+        </ul>
+      </nav>
+    </main>
+    <%= yield %>
   </body>
 </html>

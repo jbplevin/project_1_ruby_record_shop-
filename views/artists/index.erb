@@ -1,0 +1,19 @@
+<div>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Profile</th>
+      <th>Image</th>
+    </tr>
+    <tr>
+      <% @artists.each do |artist| %>
+      <td> <%= artist.id %> </td>
+      <td> <%= artist.artist_name %> </td>
+      <td> <%= artist.artist_profile %> </td>
+      <td> <%= artist.artist_image %> </td>
+    </tr>
+      <% end  %>
+  </table>
+
+</div>

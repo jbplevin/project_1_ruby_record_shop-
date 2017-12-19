@@ -2,8 +2,17 @@ require_relative("../db/sql_runner.rb")
 
 class Stock
 
-  attr_reader
-  attr_accessor
+  attr_reader :id,
+              :album_id,
+              :album_quantity,
+              :album_trade_price,
+              :album_retail_price,
+              :artist_id,
+              :song_id,
+              :song_quantity,
+              :song_trade_price,
+              :song_retail_price
+  attr_accessor :id
 
   def initialize options
     @id = options['id'].to_i if options['id']
@@ -68,28 +77,12 @@ class Stock
     SqlRunner.run(sql, values)
   end
 
-  def self.album_margins
-
-
-  end
-
-  def self.single_margin(id)
-    sql = "SELECT song_retail_price, song_trade_price,
-          song_retail_price - song_trade_price
-          FROM stocks WHERE id = $1"
-    values = [id]
-    SqlRunner.run(sql, values)
-  end
-
   def destory(id)
     sql = "DELETE FROM stocks WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
   end
-
-  def stock_level(id)
-
-  end
+  
 
 
 

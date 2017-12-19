@@ -2,28 +2,28 @@ require_relative("../db/sql_runner.rb")
 
 class Song
 
-  attr_reader :id, :title, :artist_id, :album_id, :length, :genre
-
+  attr_reader :id, :song_title, :song_length, :song_genre
+  attr_accessor :id
   def initialize options
     @id = options['id'].to_i if options['id']
-    @title = options['title']
-    @length = options['length'].to_i
-    @genre = options['genre']
+    @song_title = options['song_title']
+    @song_length = options['song_length'].to_f
+    @song_genre = options['song_genre']
   end
 
   def save
     sql = "INSERT INTO songs
           (
-          title,
-          length,
-          genre
+          song_title,
+          song_length,
+          song_genre
           )
           VALUES ($1,$2,$3)
           RETURNING id"
     values = [
-          @title,
-          @length,
-          @genre
+          @song_title,
+          @song_length,
+          @song_genre
           ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i

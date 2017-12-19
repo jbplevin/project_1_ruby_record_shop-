@@ -2,31 +2,39 @@ require_relative("../db/sql_runner.rb")
 
 class Album
 
-  attr_reader :id, :type, :genre, :title, :image, :tracklist
+  attr_reader :id,
+              :artist_id,
+              :song_id,
+              :album_type,
+              :album_genre,
+              :album_title,
+              :album_cover,
+              :album_tracklist
+  attr_accessor :id
 
   def initialize options
     @id = options['id'].to_i if options['id']
     @artist_id = options['artist_id'].to_i
     @song_id = options['song_id'].to_i
-    @type = options['type']
-    @genre = options['genre']
-    @title = options['title']
-    @image = options['image']
-    @tracklist = options['tracklist']
+    @album_type = options['album_type']
+    @album_genre = options['album_genre']
+    @album_title = options['album_title']
+    @album_cover = options['album_cover']
+    @album_tracklist = options['album_tracklist']
   end
 
   def save
-    sql = "INSERT INTO albums (artist_id, song_id, type, genre, title, image, tracklist)
+    sql = "INSERT INTO albums (artist_id, song_id, album_type, album_genre, album_title, album_cover, album_tracklist)
           VALUES ($1,$2,$3,$4,$5,$6,$7)
           RETURNING id"
     values = [
               @artist_id,
               @song_id,
-              @type,
-              @genre,
-              @title,
-              @image,
-              @tracklist
+              @album_type,
+              @album_genre,
+              @album_title,
+              @album_cover,
+              @album_tracklist
             ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
