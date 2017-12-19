@@ -7,11 +7,13 @@ class Stock
     @id = options['id'].to_i if options['id']
     @album_id = options['album_id'].to_i
     @album_quantity = options['album_quantity'].to_i
-    @album_price = options['album_price'].to_f
+    @album_trade_price = options['album_trade_price'].to_f
+    @album_retail_price = options['album_retail_price'].to_f
     @artist_id = options['artist_id'].to_i
     @song_id = options['song_id'].to_i
     @song_quantity = options ['song_id'].to_i
-    @song_price = options['song_price'].to_f
+    @song_trade_price = options['song_trade_price'].to_f
+    @song_retail_price = options['song_retail_price'].to_f
   end
 
   def save
@@ -19,22 +21,26 @@ class Stock
           (
           album_id,
           album_quantity,
-          album_price,
+          album_trade_price,
+          album_retail_price,
           artist_id,
           song_id,
           song_quantity,
-          song_price
+          song_trade_price,
+          song_retail_price
           )
-          VALUES ($1,$2,$3,$4,$5,$6,$7)
+          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
           RETURNING id"
     values = [
           @album_id,
           @album_quantity,
-          @album_price,
+          @album_trade_price,
+          @album_retail_price,
           @artist_id,
           @song_id,
           @song_quantity,
-          @song_price
+          @song_trade_price,
+          @song_retail_price
           ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i

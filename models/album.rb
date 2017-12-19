@@ -4,6 +4,8 @@ class Album
 
   def initialize options
     @id = options['id'].to_i if options['id']
+    @artist_id = options['artist_id'].to_i
+    @song_id = options['song_id'].to_i
     @type = options['type']
     @genre = options['genre']
     @title = options['title']
@@ -12,10 +14,10 @@ class Album
   end
 
   def save
-    sql = "INSERT INTO record_shop (type, genre, title, image, tracklist)
+    sql = "INSERT INTO record_shop (artist_id, song_id, type, genre, title, image, tracklist)
           VALUES ($1,$2,$3,$4,$5)
           RETURNING id"
-    values = @type, @genre, @title, @image, @tracklist
+    values = @artist_id, @song_id, @type, @genre, @title, @image, @tracklist
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
   end
