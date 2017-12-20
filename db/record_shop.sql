@@ -22,6 +22,7 @@ CREATE TABLE songs
 (
   id SERIAL8 PRIMARY KEY,
   album_id INT8 REFERENCES albums(id),
+  artist_id INT8 REFERENCES artists(id),
   title VARCHAR(255) NOT NULL,
   length FLOAT(2),
   genre VARCHAR(255) NOT NULL

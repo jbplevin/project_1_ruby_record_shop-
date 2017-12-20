@@ -1,6 +1,7 @@
 require('sinatra')
 require('sinatra/contrib/all')
 require_relative("../models/song.rb")
+require_relative("../models/album.rb")
 
 get'/songs' do
   @songs = Song.all
@@ -8,6 +9,8 @@ get'/songs' do
 end
 
 get'/songs/new' do
+  @artists = Artist.all
+  @albums = Album.all
   erb(:"songs/new")
 end
 
@@ -22,7 +25,7 @@ get '/songs/:id/edit' do
 end
 
 post'/songs' do
-  song = Song.new
+  song = Song.new(@params)
   song.save
   redirect to("/songs")
 end

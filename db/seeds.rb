@@ -46,43 +46,50 @@ album2.save()
 
 
 song1 = Song.new({
-  "album_id" => 1,
+  "album_id" => album1.id,
+  "artist_id" => artist1.id,
   "title" => "The Modern Age",
   "genre" => "Indie Rock",
   "length" => 3.32
   })
 song2 = Song.new({
-  "album_id" => 2,
+  "album_id" => album2.id,
+  "artist_id" => artist2.id,
   "title" => "Does Everybody Stare",
   "genre" => "White Reggae",
   "length" => 3.21
   })
 song3 = Song.new({
-  "album_id" => 2,
+  "album_id" => album2.id,
+  "artist_id" => artist2.id,
   "title" => "Walking on the moon",
   "genre" => "White Reggae",
   "length" => 3.12
   })
 song4 = Song.new({
-  "album_id" => 1,
+  "album_id" => album1.id,
+  "artist_id" => artist1.id,
   "title" => "12.51",
   "genre" => "Indie Rock",
   "length" => 2.32
   })
 song5 = Song.new({
-  "album_id" => 2,
+  "album_id" => album2.id,
+  "artist_id" => artist2.id,
   "title" => "Don't Stand So Close",
   "genre" => "White Reggae",
   "length" => 4.21
   })
 song6 = Song.new({
   "album_id" => album1.id,
+  "artist_id" => artist1.id,
   "title" => "Is This It?",
   "genre" => "Indie Rock",
   "length" => 3.54
   })
 song7 = Song.new({
   "album_id" => album1.id,
+  "artist_id" => artist1.id,
   "title" => "Soma",
   "genre" => "Indie Rock",
   "length" => 3.10

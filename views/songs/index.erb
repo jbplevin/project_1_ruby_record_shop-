@@ -11,6 +11,7 @@
       <% @songs.each do |song| %>
       <td> <%= song.id %> </td>
       <td> <%= song.album.title %> </td>
+      <td> <%= song.artist.name %> </td>
       <td> <%= song.title %> </td>
       <td> <%= song.length %> </td>
       <td> <%= song.genre %> </td>

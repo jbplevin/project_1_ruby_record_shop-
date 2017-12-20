@@ -4,9 +4,11 @@ class Song
 
   attr_reader :id, :title, :album_id, :length, :genre
   attr_accessor :id
+
   def initialize options
     @id = options['id'].to_i if options['id']
     @album_id = options['album_id']
+    @artist_id = options['artist_id']
     @title = options['title']
     @length = options['length'].to_i # should turn into seconds
     @genre = options['genre']
@@ -16,14 +18,16 @@ class Song
     sql = "INSERT INTO songs
           (
           album_id,
+          artist_id,
           title,
           length,
           genre
           )
-          VALUES ($1,$2,$3,$4)
+          VALUES ($1,$2,$3,$4,$5)
           RETURNING id"
     values = [
           @album_id,
+          @artist_id,
           @title,
           @length,
           @genre
@@ -37,15 +41,16 @@ class Song
   SET
   (
     album_id,
+    artist_id,
     title,
     length,
     genre
   ) =
   (
-    $1, $2, $3, $4
+    $1, $2, $3, $4, $5
   )
-  WHERE id = $5"
-  values = [@album_id, @title, @length, @genre]
+  WHERE id = $6"
+  values = [@album_id, @artist_id, @title, @length, @genre]
   SqlRunner.run(sql, values)
 end
 
@@ -80,6 +85,13 @@ end
     values = [@album_id]
     result = SqlRunner.run(sql, values)
     return Album.new(result[0])
+  end
+
+  def artist
+    sql = "SELECT * FROM artists WHERE id = $1"
+    values = [@artist_id]
+    result = SqlRunner.run(sql, values)
+    return Artist.new(result[0])
   end
 
 end

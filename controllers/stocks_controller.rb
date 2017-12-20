@@ -11,6 +11,7 @@ get'/stocks' do
 end
 
 get'/stocks/new' do
+  @albums = Album.all
   erb(:"stocks/new")
 end
 
@@ -25,13 +26,13 @@ get '/stocks/:id/edit' do
 end
 
 post '/stocks/:id' do
-  stock = Stock.new(params)
+  stock = Stock.new(@params)
   stock.update
   redirect to("/stocks/#{params['id']}")
 end
 post'/stocks' do
-  song = Stock.new
-  song.save
+  @stock = Stock.new(params)
+  @stock.save
   redirect to("/stocks")
 end
 

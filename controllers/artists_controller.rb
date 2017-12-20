@@ -23,7 +23,7 @@ get '/artists/:id/edit' do
 end
 
 post'/artists' do
-  artist = Artist.new
+  artist = Artist.new(params)
   artist.save
   redirect to("/artists")
 end

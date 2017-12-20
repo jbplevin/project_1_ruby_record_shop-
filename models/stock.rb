@@ -10,7 +10,7 @@ class Stock
   def initialize options
     @id = options['id'].to_i if options['id']
     @album_id = options['album_id'].to_i
-    @quantity = options['album_quantity'].to_i
+    @quantity = options['quantity'].to_i
   end
 
   def save
