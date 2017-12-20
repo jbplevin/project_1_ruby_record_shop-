@@ -4,54 +4,26 @@ class Stock
 
   attr_reader :id,
               :album_id,
-              :album_quantity,
-              :album_trade_price,
-              :album_retail_price,
-              :artist_id,
-              :song_id,
-              :song_quantity,
-              :song_trade_price,
-              :song_retail_price
+              :quantity
   attr_accessor :id
 
   def initialize options
     @id = options['id'].to_i if options['id']
     @album_id = options['album_id'].to_i
-    @album_quantity = options['album_quantity'].to_i
-    @album_trade_price = options['album_trade_price'].to_f
-    @album_retail_price = options['album_retail_price'].to_f
-    @artist_id = options['artist_id'].to_i
-    @song_id = options['song_id'].to_i
-    @song_quantity = options ['song_id'].to_i
-    @song_trade_price = options['song_trade_price'].to_f
-    @song_retail_price = options['song_retail_price'].to_f
+    @quantity = options['album_quantity'].to_i
   end
 
   def save
     sql = "INSERT INTO stocks
           (
           album_id,
-          album_quantity,
-          album_trade_price,
-          album_retail_price,
-          artist_id,
-          song_id,
-          song_quantity,
-          song_trade_price,
-          song_retail_price
+          quantity
           )
-          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+          VALUES ($1,$2)
           RETURNING id"
     values = [
           @album_id,
-          @album_quantity,
-          @album_trade_price,
-          @album_retail_price,
-          @artist_id,
-          @song_id,
-          @song_quantity,
-          @song_trade_price,
-          @song_retail_price
+          @quantity
           ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
@@ -61,29 +33,15 @@ class Stock
   SET
   (
     album_id,
-    album_quantity,
-    album_trade_price,
-    album_retail_price,
-    artist_id,
-    song_id,
-    song_quantity,
-    song_trade_price,
-    song_retail_price
+    quantity
   ) =
   (
-    $1, $2, $3, $4, $5, $6, $7, $8, $9
+    $1, $2
   )
-  WHERE id = $10"
+  WHERE id = $3"
   values = [
         @album_id,
-        @album_quantity,
-        @album_trade_price,
-        @album_retail_price,
-        @artist_id,
-        @song_id,
-        @song_quantity,
-        @song_trade_price,
-        @song_retail_price
+        @quantity
         ]
   SqlRunner.run(sql, values)
   end
@@ -114,7 +72,11 @@ class Stock
     SqlRunner.run(sql, values)
   end
 
-
-
+  def album()
+    sql = "SELECT * FROM albums WHERE id = $1"
+    values = [@album_id]
+    results = SqlRunner.run(sql, values)
+    return Album.new(results[0])
+  end
 
 end

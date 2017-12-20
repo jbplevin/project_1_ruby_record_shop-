@@ -1,21 +1,20 @@
 require_relative("../db/sql_runner.rb")
-
 class Artist
-  attr_reader :id, :artist_name, :artist_profile, :artist_image
+  attr_reader :id, :name, :bio, :image
   attr_accessor :id
 
   def initialize options
     @id = options['id'].to_i if options['id']
-    @artist_name = options['artist_name']
-    @artist_profile = options['artist_profile']
-    @artist_image = options['artist_image']
+    @name = options['name']
+    @bio = options['bio']
+    @image = options['image']
   end
 
   def save
-    sql = "INSERT INTO artists (artist_name, artist_profile, artist_image)
+    sql = "INSERT INTO artists (name, bio, image)
           VALUES ($1,$2,$3)
           RETURNING id"
-    values = [@artist_name, @artist_profile, @artist_image]
+    values = [@name, @bio, @image]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
   end
@@ -24,15 +23,15 @@ class Artist
   sql = "UPDATE artists
   SET
   (
-    artist_name,
-    artist_profile,
-    artist_image
+    name,
+    bio,
+    image
   ) =
   (
     $1, $2, $3
   )
   WHERE id = $4"
-  values = [@artist_name, @artist_profile, @artist_image, @id]
+  values = [@name, @bio, @image, @id]
   SqlRunner.run(sql, values)
 end
 

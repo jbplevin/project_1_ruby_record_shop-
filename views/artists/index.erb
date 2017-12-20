@@ -9,9 +9,9 @@
     <tr>
       <% @artists.each do |artist| %>
       <td> <%= artist.id %> </td>
-      <td> <%= artist.artist_name %> </td>
-      <td> <%= artist.artist_profile %> </td>
-      <td> <%= artist.artist_image %> </td>
+      <td> <%= artist.name %> </td>
+      <td> <%= artist.bio %> </td>
+      <td> <%= artist.image %> </td>
     </tr>
       <% end  %>
   </table>

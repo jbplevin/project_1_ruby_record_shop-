@@ -2,28 +2,31 @@ require_relative("../db/sql_runner.rb")
 
 class Song
 
-  attr_reader :id, :song_title, :song_length, :song_genre
+  attr_reader :id, :title, :album_id, :length, :genre
   attr_accessor :id
   def initialize options
     @id = options['id'].to_i if options['id']
-    @song_title = options['song_title']
-    @song_length = options['song_length'].to_f
-    @song_genre = options['song_genre']
+    @album_id = options['album_id']
+    @title = options['title']
+    @length = options['length'].to_i # should turn into seconds
+    @genre = options['genre']
   end
 
   def save
     sql = "INSERT INTO songs
           (
-          song_title,
-          song_length,
-          song_genre
+          album_id,
+          title,
+          length,
+          genre
           )
-          VALUES ($1,$2,$3)
+          VALUES ($1,$2,$3,$4)
           RETURNING id"
     values = [
-          @song_title,
-          @song_length,
-          @song_genre
+          @album_id,
+          @title,
+          @length,
+          @genre
           ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
@@ -33,15 +36,16 @@ class Song
   sql = "UPDATE songs
   SET
   (
-    song_title,
-    song_length,
-    song_genre
+    album_id,
+    title,
+    length,
+    genre
   ) =
   (
-    $1, $2, $3
+    $1, $2, $3, $4
   )
-  WHERE id = $4"
-  values = [@song_title, @song_length, @song_genre]
+  WHERE id = $5"
+  values = [@album_id, @title, @length, @genre]
   SqlRunner.run(sql, values)
 end
 
@@ -69,6 +73,13 @@ end
     sql = "DELETE FROM songs WHERE id = $1"
     values = [id]
     SqlRunner.run(sql, values)
+  end
+
+  def album
+    sql = "SELECT * FROM albums WHERE id = $1"
+    values = [@album_id]
+    result = SqlRunner.run(sql, values)
+    return Album.new(result[0])
   end
 
 end

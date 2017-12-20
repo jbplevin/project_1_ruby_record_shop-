@@ -4,37 +4,31 @@ class Album
 
   attr_reader :id,
               :artist_id,
-              :song_id,
-              :album_type,
-              :album_genre,
-              :album_title,
-              :album_cover,
-              :album_tracklist
+              :type,
+              :genre,
+              :title,
+              :cover_image
   attr_accessor :id
 
   def initialize options
     @id = options['id'].to_i if options['id']
     @artist_id = options['artist_id'].to_i
-    @song_id = options['song_id'].to_i
-    @album_type = options['album_type']
-    @album_genre = options['album_genre']
-    @album_title = options['album_title']
-    @album_cover = options['album_cover']
-    @album_tracklist = options['album_tracklist']
+    @type = options['type']
+    @genre = options['genre']
+    @title = options['title']
+    @cover_image = options['cover_image']
   end
 
   def save
-    sql = "INSERT INTO albums (artist_id, song_id, album_type, album_genre, album_title, album_cover, album_tracklist)
-          VALUES ($1,$2,$3,$4,$5,$6,$7)
+    sql = "INSERT INTO albums (artist_id, type, genre, title, cover_image)
+          VALUES ($1,$2,$3,$4,$5)
           RETURNING id"
     values = [
               @artist_id,
-              @song_id,
-              @album_type,
-              @album_genre,
-              @album_title,
-              @album_cover,
-              @album_tracklist
+              @type,
+              @genre,
+              @title,
+              @cover_image
             ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
@@ -45,24 +39,21 @@ class Album
   SET
   (
     artist_id,
-    song_id,
-    album_type,
-    album_genre,
-    album_title,
-    album_cover,
-    album_tracklist
+    type,
+    genre,
+    title,
+    cover_image
   ) =
   (
-    $1, $2, $3, $4, $5, $6, $7
+    $1, $2, $3, $4, $5
   )
-  WHERE id = $8"
+  WHERE id = $6"
   values = [
     @artist_id,
-    @song_id,
-    @album_type,
-    @album_genre,
-    @album_title,
-    @album_cover,
+    @type,
+    @genre,
+    @title,
+    @cover_image,
     @id
   ]
   SqlRunner.run(sql, values)
@@ -94,5 +85,11 @@ end
     SqlRunner.run(sql, values)
   end
 
+  def tracklist
+    sql = "SELECT * FROM songs WHERE album_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return results.map{|result| result['title']}
+  end
 
 end

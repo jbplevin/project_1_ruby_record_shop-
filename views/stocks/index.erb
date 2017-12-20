@@ -2,29 +2,14 @@
   <table>
     <tr>
       <th>ID</th>
-      <th>album_id</th>
-      <th>:album_quantity</th>
-      <th>:album_trade_price</th>
-      <th>:album_retail_price</th>
-      <th>:artist_id</th>
-      <th>:song_id</th>
-      <th>:song_quantity</th>
-      <th>:song_trade_price</th>
-      <th>:song_retail_price</th>
+      <th>Album Name</th>
+      <th>Quantity</th>
     </tr>
     <tr>
     <% @stocks.each do |stock| %>
       <td> <%= stock.id %> </td>
-      <td> <%= stock.album_id%> </td>
-      <td> <%= stock.album_quantity%> </td>
-      <td> <%= stock.album_trade_price%> </td>
-      <td> <%= stock.album_retail_price%> </td>
-      <td> <%= stock.artist_id%> </td>
-      <td> <%= stock.song_id%> </td>
-      <td> <%= stock.song_quantity%> </td>
-      <td> <%= stock.song_trade_price%> </td>
-      <td> <%= stock.song_retail_price%> </td>
-
+      <td> <%= stock.album.title %> </td>
+      <td> <%= stock.quantity%> </td>
     </tr>
       <% end  %>
   </table>
