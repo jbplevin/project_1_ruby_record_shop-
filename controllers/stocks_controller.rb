@@ -14,6 +14,21 @@ get'/stocks/new' do
   erb(:"stocks/new")
 end
 
+get '/stocks/:id' do
+  @stock = Stock.find(params['id'])
+  erb(:"stocks/show")
+end
+
+get '/stocks/:id/edit' do
+  @stock = Stock.find(params['id'])
+  erb(:"stocks/edit")
+end
+
+post '/stocks/:id' do
+  stock = Stock.new(params)
+  stock.update
+  redirect to("/stocks/#{params['id']}")
+end
 post'/stocks' do
   song = Stock.new
   song.save

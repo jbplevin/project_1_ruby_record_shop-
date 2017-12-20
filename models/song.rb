@@ -29,6 +29,22 @@ class Song
     @id = results[0]['id'].to_i
   end
 
+  def update()
+  sql = "UPDATE songs
+  SET
+  (
+    song_title,
+    song_length,
+    song_genre
+  ) =
+  (
+    $1, $2, $3
+  )
+  WHERE id = $4"
+  values = [@song_title, @song_length, @song_genre]
+  SqlRunner.run(sql, values)
+end
+
   def self.all
     sql = "SELECT * FROM songs"
     values = []
@@ -37,7 +53,7 @@ class Song
   end
 
   def self.find
-    sql = "SELECT * WHERE id = $1"
+    sql = "SELECT * FROM songs WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
     return Song.new(results[0])

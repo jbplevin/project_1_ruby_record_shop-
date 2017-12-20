@@ -56,6 +56,37 @@ class Stock
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
   end
+  def update()
+  sql = "UPDATE stocks
+  SET
+  (
+    album_id,
+    album_quantity,
+    album_trade_price,
+    album_retail_price,
+    artist_id,
+    song_id,
+    song_quantity,
+    song_trade_price,
+    song_retail_price
+  ) =
+  (
+    $1, $2, $3, $4, $5, $6, $7, $8, $9
+  )
+  WHERE id = $10"
+  values = [
+        @album_id,
+        @album_quantity,
+        @album_trade_price,
+        @album_retail_price,
+        @artist_id,
+        @song_id,
+        @song_quantity,
+        @song_trade_price,
+        @song_retail_price
+        ]
+  SqlRunner.run(sql, values)
+  end
 
   def self.all
     sql = "SELECT * FROM stocks"
@@ -65,7 +96,7 @@ class Stock
   end
 
   def self.find(id)
-    sql = "SELECT * WHERE id = $1"
+    sql = "SELECT * FROM stocks WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
     return Stock.new(results[0])
@@ -82,7 +113,7 @@ class Stock
     values = [id]
     SqlRunner.run(sql, values)
   end
-  
+
 
 
 
