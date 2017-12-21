@@ -20,20 +20,20 @@ class Artist
   end
 
   def update()
-  sql = "UPDATE artists
-  SET
-  (
-    name,
-    bio,
-    image
-  ) =
-  (
-    $1, $2, $3
-  )
-  WHERE id = $4"
-  values = [@name, @bio, @image, @id]
-  SqlRunner.run(sql, values)
-end
+    sql = "UPDATE artists
+    SET
+    (
+      name,
+      bio,
+      image
+    ) =
+    (
+      $1, $2, $3
+    )
+    WHERE id = $4"
+    values = [@name, @bio, @image, @id]
+    SqlRunner.run(sql, values)
+  end
 
   def self.all
     sql = "SELECT * FROM artists"
@@ -42,7 +42,7 @@ end
     return results.map{|artist| Artist.new(artist)}
   end
 
-  def self.find
+  def self.find(id)
     sql = "SELECT * FROM artists WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)

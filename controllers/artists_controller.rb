@@ -13,7 +13,8 @@ get'/artists/new' do
 end
 
 get '/artists/:id' do
-  @artist = Artist.find(params['id'])
+  @artist = Artist.find(params['id'].to_i)
+  @songs = Song.all
   erb(:"artists/show")
 end
 

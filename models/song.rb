@@ -93,5 +93,4 @@ end
     result = SqlRunner.run(sql, values)
     return Artist.new(result[0])
   end
-
 end

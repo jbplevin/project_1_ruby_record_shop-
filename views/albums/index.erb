@@ -11,7 +11,7 @@
     <tr>
       <% @albums.each do |album| %>
       <td> <%= album.id %> </td>
-      <td> <%=album.cover_image%> </td>
+      <td> <img src="<%=album.cover_image%>"></td>
       <td> <%=album.type%> </td>
       <td> <%=album.title%> </td>
       <td> <%=album.genre%> </td>
