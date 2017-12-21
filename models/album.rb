@@ -7,7 +7,11 @@ class Album
               :type,
               :genre,
               :title,
-              :cover_image
+              :cover_image,
+              :quantity,
+              :trade_price,
+              :retail_price
+
   attr_accessor :id
 
   def initialize options
@@ -17,18 +21,32 @@ class Album
     @genre = options['genre']
     @title = options['title']
     @cover_image = options['cover_image']
+    @quantity = options['quantity']
+    @trade_price = options['trade_price']
+    @retail_price = options['retail_price']
   end
 
   def save
-    sql = "INSERT INTO albums (artist_id, type, genre, title, cover_image)
-          VALUES ($1,$2,$3,$4,$5)
+    sql = "INSERT INTO albums (artist_id,
+                               type,
+                               genre,
+                               title,
+                               cover_image,
+                               quantity,
+                               trade_price,
+                               retail_price
+                              )
+          VALUES ($1,$2,$3,$4,$5,$6,$7)
           RETURNING id"
     values = [
               @artist_id,
               @type,
               @genre,
               @title,
-              @cover_image
+              @cover_image,
+              @quantity,
+              @trade_price,
+              @retail_price
             ]
     results = SqlRunner.run(sql, values)
     @id = results[0]['id'].to_i
@@ -42,10 +60,13 @@ class Album
     type,
     genre,
     title,
-    cover_image
+    cover_image,
+    quantity,
+    trade_price,
+    retail_price
   ) =
   (
-    $1, $2, $3, $4, $5
+    $1, $2, $3, $4, $5, $6, $7
   )
   WHERE id = $6"
   values = [
@@ -54,6 +75,9 @@ class Album
     @genre,
     @title,
     @cover_image,
+    @quantity,
+    @trade_price,
+    @retail_price,
     @id
   ]
   SqlRunner.run(sql, values)
@@ -90,6 +114,10 @@ end
     values = [@id]
     results = SqlRunner.run(sql, values)
     return results.map{|result| result['title']}
+  end
+
+  def profit_margin
+    return @album['retail_price'] - @album['trade_price']
   end
 
 end

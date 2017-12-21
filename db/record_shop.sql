@@ -17,6 +17,10 @@ CREATE TABLE albums (
   genre VARCHAR(255),
   title VARCHAR(255),
   cover_image VARCHAR(255)
+  quantity INT8,
+  trade_price FLOAT,
+  retail_price FLOAT,
+
 );
 CREATE TABLE songs
 (

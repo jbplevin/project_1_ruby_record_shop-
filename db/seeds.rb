@@ -58,7 +58,10 @@ album1 = Album.new({
   "artist_id" => artist1.id,
   "genre" => "00s Rock",
   "title" => "Is This It?",
-  "cover_image" => "/media/images/albums/is_this_it.jpg"
+  "cover_image" => "/media/images/albums/is_this_it.jpg",
+  "quantity" => 140,
+  "trade_price" => 1.99,
+  "retail_price" => 5.99
   })
 
 album2 = Album.new({
@@ -66,70 +69,100 @@ album2 = Album.new({
   "artist_id" => artist2.id,
   "genre" => "80s Rock",
   "title" => "Regatta de Blanc",
-  "cover_image" => "/media/images/albums/regatta_de_blanc.jpg"
+  "cover_image" => "/media/images/albums/regatta_de_blanc.jpg",
+  "quantity" => 10,
+  "trade_price" => 2.99,
+  "retail_price" => 8.99
   })
 album3 = Album.new({
   "type" => "Minidisc",
   "artist_id" => artist1.id,
   "genre" => "00s Rock",
   "title" => "Room On Fire",
-  "cover_image" => "/media/images/albums/room_on_fire.jpg"
+  "cover_image" => "/media/images/albums/room_on_fire.jpg",
+  "quantity" => 1,
+  "trade_price" => 1.76,
+  "retail_price" => 5.99
   })
 album4 = Album.new({
   "type" => "Vinyl",
   "artist_id" => artist6.id,
   "genre" => "Motown",
   "title" => "Mowest",
-  "cover_image" => "/media/images/albums/mowest.jpg"
+  "cover_image" => "/media/images/albums/mowest.jpg",
+  "quantity" => 20,
+  "trade_price" => 2.35,
+  "retail_price" => 9.99
   })
 album5 = Album.new({
   "type" => "Vinyl",
   "artist_id" => artist6.id,
   "genre" => "Motown",
   "title" => "Sunshower",
-  "cover_image" => "/media/images/albums/sunshower.jpg"
+  "cover_image" => "/media/images/albums/sunshower.jpg",
+  "quantity" => 90,
+  "trade_price" => 4.99,
+  "retail_price" => 11.99
   })
 album6 = Album.new({
   "type" => "Vinyl",
   "artist_id" => artist3.id,
   "genre" => "60s Rock",
   "title" => "Led Zeppelin",
-  "cover_image" => "/media/images/albums/led_zep_1.jpg"
+  "cover_image" => "/media/images/albums/led_zep_1.jpg",
+  "quantity" => 100,
+  "trade_price" => 1.99,
+  "retail_price" => 8.99
   })
 album7 = Album.new({
   "type" => "CD",
   "artist_id" => artist3.id,
   "genre" => "60s Rock",
   "title" => "II",
-  "cover_image" => "/media/images/albums/led_zep_2.jpg"
+  "cover_image" => "/media/images/albums/led_zep_2.jpg",
+  "quantity" => 200,
+  "trade_price" => 1.99,
+  "retail_price" => 7.99
   })
 album8 = Album.new({
   "type" => "Vinyl",
   "artist_id" => artist3.id,
   "genre" => "70s Rock",
   "title" => "III",
-  "cover_image" => "/media/images/albums/led_zep_3.jpg"
+  "cover_image" => "/media/images/albums/led_zep_3.jpg",
+  "quantity" => 5,
+  "trade_price" => 0.99,
+  "retail_price" => 31.99
   })
 album9 = Album.new({
   "type" => "Vinyl",
   "artist_id" => artist3.id,
   "genre" => "70s Rock",
   "title" => "IV",
-  "cover_image" => "/media/images/albums/led_zep_4.jpg"
+  "cover_image" => "/media/images/albums/led_zep_4.jpg",
+  "quantity" => 2,
+  "trade_price" => 11.99,
+  "retail_price" => 55.99
   })
 album10 = Album.new({
   "type" => "Minidisc",
   "artist_id" => artist4.id,
   "genre" => "00s Rock",
   "title" => "Who Killed The Zutons?",
-  "cover_image" => "/media/images/albums/who_killed.jpg"
+  "cover_image" => "/media/images/albums/who_killed.jpg",
+  "quantity" => 10,
+  "trade_price" => 1.99,
+  "retail_price" => 2.99
   })
 album11 = Album.new({
   "type" => "Vinyl",
   "artist_id" => artist5.id,
   "genre" => "Pop",
   "title" => "Regatta de Blanc",
-  "cover_image" => "/media/images/albums/what_cha_gonna_do.jpg"
+  "cover_image" => "/media/images/albums/what_cha_gonna_do.jpg",
+  "quantity" => 10,
+  "trade_price" => 1.99,
+  "retail_price" => 5.99
   })
 
 album1.save()
