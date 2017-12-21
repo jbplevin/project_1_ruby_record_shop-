@@ -61,7 +61,7 @@ end
     return results.map{|song| Song.new(song)}
   end
 
-  def self.find
+  def self.find(id)
     sql = "SELECT * FROM songs WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)

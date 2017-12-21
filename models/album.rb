@@ -34,7 +34,7 @@ class Album
     @id = results[0]['id'].to_i
   end
 
-  def update()
+  def update
   sql = "UPDATE albums
   SET
   (

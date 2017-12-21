@@ -1,0 +1,21 @@
+<h1> <%= @song.title %> </h1>
+
+<div>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>Length</th>
+      <th>genre</th>
+    </tr>
+    <tr>
+      <td> <%= @song.title %> </td>
+      <td> <%= @song.artist.name %> </td>
+      <td> <img src=" <%= @song.album.cover_image %> "></td>
+      <td> <%= @song.length %> </td>
+      <td> <%= @song.genre %> </td>
+    </tr>
+  </table>
+
+</div>
