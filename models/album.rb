@@ -21,9 +21,9 @@ class Album
     @genre = options['genre']
     @title = options['title']
     @cover_image = options['cover_image']
-    @quantity = options['quantity']
-    @trade_price = options['trade_price']
-    @retail_price = options['retail_price']
+    @quantity = options['quantity'].to_i
+    @trade_price = options['trade_price'].to_f
+    @retail_price = options['retail_price'].to_f
   end
 
   def save
@@ -36,7 +36,7 @@ class Album
                                trade_price,
                                retail_price
                               )
-          VALUES ($1,$2,$3,$4,$5,$6,$7)
+          VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
           RETURNING id"
     values = [
               @artist_id,
@@ -66,9 +66,9 @@ class Album
     retail_price
   ) =
   (
-    $1, $2, $3, $4, $5, $6, $7
+    $1, $2, $3, $4, $5, $6, $7, $8
   )
-  WHERE id = $6"
+  WHERE id = $9"
   values = [
     @artist_id,
     @type,
@@ -117,7 +117,8 @@ end
   end
 
   def profit_margin
-    return @album['retail_price'] - @album['trade_price']
+    profit = @retail_price - @trade_price
+    return profit
   end
 
 end
