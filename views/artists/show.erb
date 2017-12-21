@@ -1,5 +1,19 @@
 <h1><%= @artist.name %></h1>
 
-<div class="artist_image">
-  <img src="<%= @artist.image %>">
+<div>
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Albums</th>
+      <th>Songs</th>
+      <th>Profile</th>
+    </tr>
+    <tr>
+      <td> <img src="<%= @artist.image %>"> </td>
+      <td> <%= @artist.albums %> </td>
+      <td> <%= @artist.songs %> </td>
+      <td> <%= @artist.bio %> </td>
+    </tr>
+  </table>
+
 </div>
